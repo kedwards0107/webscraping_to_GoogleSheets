@@ -14,13 +14,14 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
-# Need to setup google sheet by using 
+# Need to setup google sheet by using https://console.cloud.google.com/ as described in https://www.youtube.com/watch?v=cnPlKLEGR7E&list=LLQ9okj1k2C-JgQ5nJuMXRaA&index=18&t=372s
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds2.json", scope)
-
 client = gspread.authorize(creds)
 sheet = client.open("Plants").sheet1  # Open the spreadsheet
 data = sheet.get_all_records()
 
+# Opens Chrome to website in get
+# Need to download chromedriver if haven't yet
 driver = webdriver.Chrome(executable_path='/Users/mack/Downloads/chromedriver3')
 driver.get("http://adafruit.com")
 time.sleep(5)
